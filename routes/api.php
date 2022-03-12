@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\APIController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,4 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(['prefix'=>'mk','as'=>'.kk'],function(){
+  Route::get('/user/{id?}',[APIController::class,'getUsers']);
+  Route::post('/useradd',[APIController::class,'addUsers']);
 });
